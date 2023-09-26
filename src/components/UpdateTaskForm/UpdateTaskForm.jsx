@@ -104,7 +104,7 @@ const UpdateTaskForm = () => {
             </form>
             <Link to="/"   className="py-10  ml-5">
                 <button className=' flex items-center justify-center'>
-                   Do not want to Update  <span className='ml-3 hover:underline text-blue-600 '>  Home</span>
+                   Do not want to Update Go <span className='ml-3 hover:underline text-blue-600 '>  Home</span>
                 </button>
             </Link>
         </div>
