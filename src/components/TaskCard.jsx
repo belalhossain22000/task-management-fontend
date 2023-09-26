@@ -10,10 +10,7 @@ const TaskCard = ({ task }) => {
         await deleteTasks(_id)
         console.log(_id)
     }
-    // handle update button
-    const handleUpdate = () => {
 
-    }
 
     return (
         <div className="border p-4 rounded shadow-md mb-4">
@@ -22,6 +19,7 @@ const TaskCard = ({ task }) => {
             <p className="text-gray-500 mb-4">{dueDate}</p>
             <div className="flex space-x-2">
                 <Link to={`updateTask/${_id}`}><button
+
                     className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-700"
                 >
                     Update

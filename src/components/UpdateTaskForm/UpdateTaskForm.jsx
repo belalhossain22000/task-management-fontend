@@ -24,8 +24,8 @@ const UpdateTaskForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await updateTasks({ formData, id: _id });
-        refetch()
+        await updateTasks({ data: formData, id: _id });
+       
         console.log(formData, _id);
         alert('Task updated successfully')
     };

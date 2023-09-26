@@ -23,17 +23,13 @@ export const taskApi = baseApi.injectEndpoints({
     }),
     // update task
     updateTasks: builder.mutation({
-      query: ({ data, id }) => {
-        console.log("Received id:", id); // Add this line to check the id
-        return {
-          url: `/updateTask/${id}`,
-          method: "PUT",
-          body: data,
-        };
-      },
+      query: ({ data, id }) => ({
+        url: `/updateTask/${id}`,
+        method: "PUT",
+        body: data,
+      }),
       invalidatesTags: ["task"],
     }),
-
     // delete task
     deleteTasks: builder.mutation({
       query: (id) => ({
