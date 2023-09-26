@@ -32,7 +32,7 @@ const Form = () => {
             description: '',
             dueDate: '',
         })
-        navigate("/")
+        document.getElementById('my_modal_6').close()
 
     };
 
@@ -87,6 +87,7 @@ const Form = () => {
                     </div>
                     <div className="text-center">
                         <button
+
                             disabled={isLoading}
                             type="submit"
                             className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-full w-36 focus:outline-none"
