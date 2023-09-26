@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useGetTasksByIdQuery, useUpdateTasksMutation } from '../../redux/taskApi/taskApi';
 import Loading from '../Loading/Loading';
 
@@ -7,6 +7,7 @@ const UpdateTaskForm = () => {
     const { _id } = useParams()
     const { data: task, isLoading, refetch } = useGetTasksByIdQuery(_id)
     const [updateTasks, { isLoading: loading }] = useUpdateTasksMutation()
+    const navigate = useNavigate()
 
     const [formData, setFormData] = useState({
         taskName: task?.taskName || '',
@@ -25,9 +26,10 @@ const UpdateTaskForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         await updateTasks({ data: formData, id: _id });
-       
+
         console.log(formData, _id);
         alert('Task updated successfully')
+        navigate("/")
     };
 
     // Update the formData state when the task data changes
@@ -46,7 +48,7 @@ const UpdateTaskForm = () => {
 
     return (
         <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-1/2 mx-auto">
-            <h2 className="text-2xl mb-4 font-semibold">Update Task</h2>
+            <h2 className="text-2xl mb-4 font-semibold text-center">Update Task</h2>
             <form onSubmit={handleSubmit}>
                 <div className="mb-4">
                     <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="taskName">
@@ -100,6 +102,11 @@ const UpdateTaskForm = () => {
 
                 </button>
             </form>
+            <Link to="/"   className="py-10  ml-5">
+                <button className=' flex items-center justify-center'>
+                   Do not want to Update  <span className='ml-3 hover:underline text-blue-600 '>  Home</span>
+                </button>
+            </Link>
         </div>
     );
 };

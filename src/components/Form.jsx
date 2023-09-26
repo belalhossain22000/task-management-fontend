@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { usePostTasksMutation } from '../redux/taskApi/taskApi';
+import { useNavigate } from 'react-router-dom';
 
 const Form = () => {
     const [postTasks, { isLoading, reset }] = usePostTasksMutation()
+    const navigate = useNavigate()
     // Initialize state for the form fields
     const [formData, setFormData] = useState({
         taskName: '',
@@ -25,8 +27,12 @@ const Form = () => {
         await postTasks(formData)
         console.log(formData);
         alert('Task post successfully')
-        reset()
-        setFormData("")
+        setFormData({
+            taskName: '',
+            description: '',
+            dueDate: '',
+        })
+        navigate("/")
 
     };
 
@@ -42,6 +48,7 @@ const Form = () => {
                             Task Name:
                         </label>
                         <input
+                            required
                             type="text"
                             id="taskName"
                             name="taskName"
@@ -55,6 +62,7 @@ const Form = () => {
                             Description:
                         </label>
                         <input
+                            required
                             type="text"
                             id="description"
                             name="description"
@@ -68,6 +76,7 @@ const Form = () => {
                             Date:
                         </label>
                         <input
+                            required
                             type="text"
                             id="dueDate"
                             name="dueDate"
@@ -78,10 +87,13 @@ const Form = () => {
                     </div>
                     <div className="text-center">
                         <button
+                            disabled={isLoading}
                             type="submit"
                             className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-full w-36 focus:outline-none"
                         >
-                            Submit
+                            {
+                                isLoading ? "Adding Task ..." : "Add Task"
+                            }
                         </button>
                     </div>
                 </form>

@@ -7,8 +7,13 @@ const TaskCard = ({ task }) => {
     const { taskName, dueDate, description, _id } = task
     // TAsk delete handler
     const handleDeleteTask = async (_id) => {
-        await deleteTasks(_id)
-        console.log(_id)
+        const deleteConfirm = confirm('Are you want to delete this task')
+        if (deleteConfirm) {
+            await deleteTasks(_id)
+            console.log(_id)
+            alert('Task deleted successfully')
+        }
+
     }
 
 
